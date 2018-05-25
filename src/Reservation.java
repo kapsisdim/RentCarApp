@@ -15,9 +15,12 @@ public class Reservation {
     private String return_time;
     private int total_cost;
     
-    public int calculateTotalCost(String pick_up_date, String return_date)
-    {
-        
+    public int calculateTotalCost(String pick_up_date, String return_date, int car_id)
+    {        
+    	int total_cost = 0;
+    	CarRepo car = new CarRepo();
+    	long diffDays = 0;
+    	
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         
         try{
@@ -26,16 +29,18 @@ public class Reservation {
         	
         	long diff = date2.getTime() - date1.getTime();
         	
-        	long diffDays = diff / (24 * 60 * 60 * 1000);
-        	
-        	System.out.println(diffDays);
+        	diffDays = diff / (24 * 60 * 60 * 1000);
         	
         }catch(Exception e){
-        	
+        	System.out.println("Wrong input!");
         }
-		return this.total_cost;
+        
+        int price = car.selectCarPrice(car_id);
+        
+        total_cost = (int) (diffDays * price);
+        
+		return total_cost;
     }
-    
     
     //setters    
     public void setReservationId(int reservation_id)
@@ -56,11 +61,6 @@ public class Reservation {
     public void setStoreId(int store_id)
     {
         this.store_id = store_id;
-    }
-                
-    public void setTotalCost(int total_cost)
-    {
-        this.total_cost = total_cost;
     }
     
     public void setPickUpDate(String pick_up_date)
@@ -88,7 +88,11 @@ public class Reservation {
         this.return_time = return_time;
     }
     
-    
+    public void setTotalCost(String pick_up_date, String return_date, int car_id)
+    {
+    	this.total_cost = calculateTotalCost(pick_up_date, return_date, car_id);
+    }
+        
     //getters
     public int getReservationId()
     {
@@ -138,7 +142,7 @@ public class Reservation {
     public String getReturnTime()
     {
         return this.return_time;
-    }    
+    }
     
     Reservation(int customer_id, int store_id, int car_id, String pick_up_date, String pick_up_time, String drop_out_location, String return_date, String return_time)
     {
@@ -148,6 +152,6 @@ public class Reservation {
         setPickUpDate(pick_up_date);
         setPickUpTime(pick_up_time);
         setDropOutLocation(drop_out_location);
-        setTotalCost(calculateTotalCost(pick_up_date, return_date));
+        setTotalCost(pick_up_date, return_date, car_id);
     }	
 }

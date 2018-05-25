@@ -1,19 +1,14 @@
 
 public class Car {
-	
-	private int car_id;
+
     private String size;
     private int seates;
     private int doors;
     private String type;
     private int price;
+    private int store_id;
     
-    //setters
-    public void setCarId(int car_id)
-    {
-        this.car_id = car_id;
-    }
-    
+    //setters    
     public void setSize(String size)
     {
         this.size = size;
@@ -39,12 +34,12 @@ public class Car {
         this.price = price;
     }
     
-    //getters
-    public int getCarId()
+    public void setStoreId(int store_id)
     {
-        return this.car_id;
+    	this.store_id = store_id;
     }
     
+    //getters    
     public String getSize()
     {
         return this.size;
@@ -68,16 +63,21 @@ public class Car {
     public int getPrice()
     {
         return this.price;
-    }    
+    }  
+    
+    public int getStoreId()
+    {
+    	return this.store_id;
+    }
     
 
-	public Car(int id, String size, int seates, int doors, String type,int price) {
-        setCarId(id);
+	public Car(String size, int seates, int doors, String type, int price, int store_id) {
         setSize(size);
         setSeates(seates);
         setDoors(doors);
         setType(type);
         setPrice(price);
+        setStoreId(store_id);
 	}
 
 }

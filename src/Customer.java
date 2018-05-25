@@ -1,7 +1,5 @@
 
 public class Customer {
-
-    private int customer_id;
     private String first_name;
     private String last_name;
     private String email;
@@ -9,12 +7,7 @@ public class Customer {
     private int phone_number;
     
     
-    //setters
-    public void setCustomerId(int customer_id)
-    {
-        this.customer_id = customer_id;
-    }
-    
+    //setters    
     public void setFirstName(String name)
     {
         this.first_name = name;
@@ -40,12 +33,7 @@ public class Customer {
         this.phone_number = phone_number;
     }
     
-    //getters
-    public int getCustomerId()
-    {
-        return this.customer_id;
-    }
-    
+    //getters    
     public String getFirstName()
     {
         return this.first_name;
@@ -71,8 +59,7 @@ public class Customer {
         return this.phone_number;
     }
     
-	Customer(int id, String first_name, String last_name, String email, int phone_number, int license) {
-		setCustomerId(id);
+	Customer(String first_name, String last_name, String email, int phone_number, int license) {
 		setFirstName(first_name);
 		setLastName(last_name);
 		setEmail(email);
